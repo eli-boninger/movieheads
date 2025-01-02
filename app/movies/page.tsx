@@ -1,36 +1,25 @@
 import axios from "axios";
+import MovieCard from "../ui/movie-card";
 
 interface ApiResponse {
     dates: any;
     page: number;
-    results: Array<ApiResponseMovie>;
+    results: Array<Movie>;
     total_pages: number;
     total_results: number;
 }
 
-interface ApiResponseMovie {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: Array<number>;
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-}
-
 async function Movies() {
-    const nowPlaying = await axios.get<ApiResponse>(`${process.env.TMDB_API_URL}/movie/now_playing?api_key=${process.env.TMDB_API_KEY}`)
+    const { data: nowPlaying } = await axios.get<ApiResponse>(`${process.env.TMDB_API_URL}/movie/now_playing?api_key=${process.env.TMDB_API_KEY}`)
+    console.log(nowPlaying.results[0])
     return (
-        <>
-            {nowPlaying.data.results?.map(m => <div>{m.title}</div>)}
-        </>
+        <section>
+            <h1 className="text-xl">Now playing</h1>
+            <ul className="flex flex-wrap gap-4">
+                {nowPlaying.results?.map(m => <li key={m.id}><MovieCard movie={m} /></li>)}
+            </ul>
+
+        </section>
     )
 }
 
