@@ -20,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nunitoSans.className} antialiased bg-main-50 pl-4`}
+        className={`${nunitoSans.className} antialiased bg-main-50`}
       >
         <NavBar />
 
-        <main className="pt-4">
+        <main className="pt-4 pl-4">
           <Providers>
             {children}
           </Providers>

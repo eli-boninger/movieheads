@@ -11,7 +11,7 @@ interface ApiResponse {
 
 async function Movies() {
     const { data: nowPlaying } = await axios.get<ApiResponse>(`${process.env.TMDB_API_URL}/movie/now_playing?api_key=${process.env.TMDB_API_KEY}`)
-    console.log(nowPlaying.results[0])
+    console.log(nowPlaying)
     return (
         <section>
             <h1 className="text-xl">Now playing</h1>

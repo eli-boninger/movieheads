@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const NavBar = () => {
     return (
-        <header className="pb-4 pt-4">
+        <header className="p-4 sticky top-0 " id="navbar">
             <nav className="flex items-center gap-8">
                 <Link href="/" className="mr-10">
                     <Image

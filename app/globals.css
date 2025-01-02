@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes background-to-white {
+  from {
+    background-color: #ecfcff;
+    box-shadow: none;
+  }
+
+  to {
+    background-color: white;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+  }
+}
+
+#navbar {
+  animation-name: background-to-white;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-timeline: scroll(block nearest);
+}
