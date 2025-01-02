@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { nunitoSans } from "./ui/fonts";
 import "./globals.css";
+import NavBar from "./ui/navbar";
 
 
 export const metadata: Metadata = {
@@ -16,9 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nunitoSans.className} antialiased bg-main-50`}
+        className={`${nunitoSans.className} antialiased bg-main-50 pl-4`}
       >
-        {children}
+        <NavBar />
+        <main className="pt-4">
+          {children}
+        </main>
+
       </body>
     </html>
   );
