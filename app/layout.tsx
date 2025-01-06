@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { nunitoSans } from "./ui/fonts";
 import "./globals.css";
 import NavBar from "./ui/navbar";
 import Footer from "./ui/footer";
 import { Providers } from "./providers";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./ui/theme";
+import { nunitoSans } from "./ui/fonts";
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,19 +23,27 @@ export default function RootLayout({
 
 
   return (
+
     <html lang="en">
       <body
-        className={`${nunitoSans.className} antialiased bg-main-50`}
+        className={`${nunitoSans.variable} antialiased`}
       >
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <main style={{ padding: '1rem 0 0 1rem' }}>
+              <Providers>
+                {children}
+              </Providers>
+            </main>
+          </ThemeProvider>
+
+          <Footer />
+        </AppRouterCacheProvider>
         <NavBar />
 
-        <main className="pt-4 pl-4">
-          <Providers>
-            {children}
-          </Providers>
-        </main>
-        <Footer />
+
       </body>
     </html>
+
   );
 }

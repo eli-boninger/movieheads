@@ -1,11 +1,11 @@
-import Image from "next/image";
+import { Box, Typography } from "@mui/material";
 import { crimsonPro } from "./ui/fonts";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center">
-      <h1 className={`${crimsonPro.className} text-3xl`}>Movies matter.</h1>
-    </div>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Typography variant="h1" className={`${crimsonPro.variable}`}>Movies matter.</Typography>
+    </Box>
 
   );
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
-import MovieCard from "../ui/movie-card";
-import { crimsonPro } from "../ui/fonts";
+import MovieCard from "@/app/ui/movie-card";
+import { crimsonPro } from "@/app/ui/fonts";
+import { Typography } from "@mui/material";
 
 interface ApiResponse {
     dates: any;
@@ -15,8 +16,8 @@ async function Movies() {
     console.log(nowPlaying)
     return (
         <section>
-            <h1 className={`${crimsonPro.className} font-bold text-2xl mb-2`}>NOW PLAYING</h1>
-            <ul className="flex flex-wrap gap-4">
+            <Typography variant="h1" className={`${crimsonPro.className}`}>NOW PLAYING</Typography>
+            <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {nowPlaying.results?.map(m => <li key={m.id}><MovieCard movie={m} /></li>)}
             </ul>
 
