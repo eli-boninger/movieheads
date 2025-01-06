@@ -26,10 +26,13 @@ export default function RootLayout({
 
     <html lang="en">
       <body
-        className={`${nunitoSans.variable} antialiased`}
+        className={`${nunitoSans.variable}`}
+        style={{ margin: 0, backgroundColor: '#e0f5fe' }}
       >
         <AppRouterCacheProvider>
+
           <ThemeProvider theme={theme}>
+            <NavBar />
             <main style={{ padding: '1rem 0 0 1rem' }}>
               <Providers>
                 {children}
@@ -39,7 +42,7 @@ export default function RootLayout({
 
           <Footer />
         </AppRouterCacheProvider>
-        <NavBar />
+
 
 
       </body>
