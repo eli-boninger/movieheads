@@ -6,7 +6,8 @@ import { Providers } from "./providers";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./ui/theme";
-import { nunitoSans } from "./ui/fonts";
+import { crimsonPro, nunitoSans } from "./ui/fonts";
+import { Box } from "@mui/material";
 
 
 
@@ -26,21 +27,24 @@ export default function RootLayout({
 
     <html lang="en">
       <body
-        className={`${nunitoSans.variable}`}
+        className={`${crimsonPro.variable} ${nunitoSans.variable} `}
         style={{ margin: 0, backgroundColor: '#e0f5fe' }}
       >
         <AppRouterCacheProvider>
 
           <ThemeProvider theme={theme}>
             <NavBar />
-            <main style={{ padding: '1rem 0 0 1rem' }}>
-              <Providers>
-                {children}
-              </Providers>
-            </main>
+            <Box sx={{ display: 'flex', flexDirection: "column", justifyContent: 'space-between' }}>
+              <main style={{ padding: '1rem 0 0 1rem' }}>
+                <Providers>
+                  {children}
+                </Providers>
+              </main>
+
+              <Footer />
+            </Box>
           </ThemeProvider>
 
-          <Footer />
         </AppRouterCacheProvider>
 
 

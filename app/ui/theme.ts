@@ -4,6 +4,10 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
     typography: {
         fontFamily: 'var(--font-nunito-sans)',
+        h1: {
+            fontSize: '3rem',
+            fontFamily: 'var(--font-crimson-pro)'
+        }
     },
     palette: {
         primary: {

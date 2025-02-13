@@ -2,9 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AppBar, Box, IconButton, Menu, MenuItem, styled, Link as MuiLink } from "@mui/material";
-import { keyframes } from '@emotion/react'
 import MenuIcon from '@mui/icons-material/Menu';
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
+import NavLink from "./nav-link";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => `
     @keyframes background-to-white {
@@ -27,6 +27,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => `
     animation-timeline: scroll(block nearest);
 `)
 
+const pages = [{ title: "Movies", path: "/movies" }, { title: 'Writing', path: '/writing' }, { title: "News", path: '/news' }]
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -40,7 +41,7 @@ const NavBar = () => {
     };
 
     return (
-        <StyledAppBar id="navbar" position="sticky" sx={{ top: 0, p: 4, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8, justifyContent: { sm: 'space-between', md: 'justify-start' } }}>
+        <StyledAppBar id="navbar" position="sticky" sx={{ top: 0, p: 2, display: 'flex', flexDirection: 'row', boxShadow: 'none', backgroundColor: "primary.light", alignItems: 'center', gap: 8, justifyContent: { sm: 'space-between', md: 'justify-start' } }}>
             <Link href="/" style={{ marginRight: '20px' }}>
                 <Image
                     src="/movieheads.png"
@@ -75,28 +76,14 @@ const NavBar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem>Movies</MenuItem>
-                <MenuItem>Theaters</MenuItem>
-                <MenuItem>News</MenuItem>
-                <MenuItem>Writing</MenuItem>
+                {pages.map(p => <Link style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleClose} href={p.path} key={p.title}><MenuItem>{p.title}</MenuItem></Link>)}
             </Menu>
 
             <Box sx={{ display: { sm: 'none', md: 'flex', gap: 8 } }}>
-                <Link href="/movies" passHref legacyBehavior>
-                    <MuiLink underline="hover" variant="body1" color="primary.contrastText">MOVIES</MuiLink>
-                </Link>
-                <Link href="/movies" passHref legacyBehavior>
-                    <MuiLink underline="hover" variant="body1" color="primary.contrastText">THEATERS</MuiLink>
-                </Link>
-                <Link href="/movies" passHref legacyBehavior>
-                    <MuiLink underline="hover" variant="body1" color="primary.contrastText">NEWS</MuiLink>
-                </Link>
-                <Link href="/movies" passHref legacyBehavior>
-                    <MuiLink underline="hover" variant="body1" color="primary.contrastText">WRITING</MuiLink>
-                </Link>
+                {pages.map(p => <NavLink href={p.path} key={p.title}>{p.title}</NavLink>)}
             </Box>
 
-        </StyledAppBar>
+        </StyledAppBar >
     )
 }
 
