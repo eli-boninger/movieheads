@@ -13,7 +13,10 @@ export default async function Page({ params }: { params: Promise<{ movieId: stri
     const movie = await getMovieDetails(id)
     return (
         <article>
-            <Typography variant="h1"> Movie ID: {id}</Typography><p>{JSON.stringify(movie)}</p></article>
+            <Typography variant="h1" sx={{ mb: 4 }}> {movie.title}</Typography>
+            <Typography variant="overline">Released {new Date(movie.releaseDate).toLocaleDateString()}</Typography>
+            <Typography>{movie.overview}</Typography>
+        </article>
 
     )
 }

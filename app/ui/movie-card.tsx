@@ -3,21 +3,23 @@
 import { useContext } from "react";
 import { TmdbContext } from "./context/TmdbContext";
 import Image from "next/image";
+import { Movie } from "@/app/_lib/models";
 
 interface Props {
     movie: Movie;
+    small?: boolean;
 }
 
 export default function MovieCard(props: Props) {
     const { baseUrl, posterSize } = useContext(TmdbContext);
-    const { movie } = props;
+    const { movie, small = false } = props;
 
     return (
         <Image
-            src={`${baseUrl}${posterSize}${movie.poster_path}`}
+            src={`${baseUrl}${posterSize}${movie.posterPath}`}
             alt={`${movie.title} movie poster`}
-            width={185}
-            height={300}
+            width={small ? 46.25 : 185}
+            height={small ? 75 : 300}
         />
     )
 }
